@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1067" viewBox="0 0 800 1067">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#203848"/><stop offset="1" stop-color="#f2a565"/></linearGradient><linearGradient id="gs" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f7f3e9"/><stop offset="1" stop-color="#87bed4"/></linearGradient><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2"/><feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.06 0"/></filter></defs>
+<rect width="800" height="1067" fill="#0b1f2a"/>
+<path d="M180,440 q 120,-90 260,-52 q 130,36 190,-8 q -30,66 -110,84 q -150,34 -278,-4 q -50,-14 -62,-20 Z" fill="none" stroke="url(#g)" stroke-width="4" stroke-linejoin="round"/><path d="M560,392 q 34,-26 62,-18 q -20,26 -46,34" fill="none" stroke="url(#g)" stroke-width="3"/><circle cx="240" cy="404" r="6" fill="url(#g)"/><circle cx="320" cy="240" r="3" fill="url(#gs)" opacity="0.8"/><circle cx="520" cy="200" r="4" fill="url(#gs)" opacity="0.7"/><circle cx="660" cy="300" r="3" fill="url(#gs)" opacity="0.6"/>
+<text x="56" y="920" font-family="Arial Black, Arial" font-size="64" font-weight="900" fill="none" stroke="url(#g)" stroke-width="2">B4</text>
+<text x="56" y="985" font-family="Arial" font-size="19" letter-spacing="6" fill="#f7f3e9" opacity="0.55">STARHARBOR — NOCTURNE</text>
+<rect x="26" y="26" width="748" height="1015" fill="none" stroke="#f7f3e9" stroke-opacity="0.14"/>
+<rect width="800" height="1067" filter="url(#n)" opacity="0.5"/>
+</svg>
