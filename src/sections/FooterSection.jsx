@@ -2,6 +2,8 @@ import FadeIn from "../components/FadeIn";
 import MagicBentoHover from "../components/MagicBentoHover";
 import SectionHeading from "../components/SectionHeading";
 
+const baseUrl = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+
 export default function FooterSection() {
   const handleBackToHome = (event) => {
     event.preventDefault();
@@ -21,7 +23,7 @@ export default function FooterSection() {
         <MagicBentoHover className="jack-footer-panel" glowColor="135, 190, 212" particleCount={8}>
           <img
             className="jack-footer-avatar"
-            src={`${import.meta.env.BASE_URL}calmer-q.png`}
+            src={`${baseUrl}calmer-q.png`}
             alt="GoldenHeart character"
             width="960"
             height="960"

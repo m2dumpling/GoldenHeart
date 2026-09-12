@@ -1,7 +1,8 @@
 import { heroTags } from "../data/siteContent";
 
-const AVATAR = `${import.meta.env.BASE_URL}dumpling-avatar.png`;
-const STAND = `${import.meta.env.BASE_URL}calmer-stand.png`;
+const baseUrl = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const AVATAR = `${baseUrl}dumpling-avatar.png`;
+const STAND = `${baseUrl}calmer-stand.png`;
 
 function Chars({ text, className = "" }) {
   return (

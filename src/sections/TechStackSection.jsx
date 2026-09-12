@@ -4,6 +4,8 @@ import SectionHeading from "../components/SectionHeading";
 import SpotlightCard from "../components/SpotlightCard";
 import { techStackItems } from "../data/siteContent";
 
+const baseUrl = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+
 function toRgba(color, alpha = 0.24) {
   const hex = color.replace("#", "").trim();
 
@@ -69,7 +71,7 @@ export default function TechStackSection() {
         <FadeIn className="tech-stack-character-wrap" delay={0.14} x={28} y={18}>
           <img
             className="tech-stack-character"
-            src={`${import.meta.env.BASE_URL}calmer-stand.png`}
+            src={`${baseUrl}calmer-stand.png`}
             alt="dumpling standing character"
             width="1024"
             height="1536"

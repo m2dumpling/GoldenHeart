@@ -1,3 +1,5 @@
+const baseUrl = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+
 export default function GoldenFooter() {
   return (
     <footer className="gh-footer" id="continued" aria-label="Site footer">
@@ -20,7 +22,7 @@ export default function GoldenFooter() {
         <div className="gh-footer-row" data-reveal>
           <img
             className="gh-footer-mascot"
-            src={`${import.meta.env.BASE_URL}calmer-q.png`}
+            src={`${baseUrl}calmer-q.png`}
             alt="GoldenHeart character"
             loading="lazy"
             draggable="false"

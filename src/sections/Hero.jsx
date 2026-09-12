@@ -5,7 +5,8 @@ import FuzzyText from "../components/FuzzyText";
 import ProfileCard from "../components/ProfileCard";
 import { heroFluidColors, heroTags, socialLinks } from "../data/siteContent";
 
-const avatarImage = `${import.meta.env.BASE_URL}dumpling-avatar.png`;
+const baseUrl = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const avatarImage = `${baseUrl}dumpling-avatar.png`;
 
 export default function Hero() {
   const dockItems = socialLinks.map(({ label, href, icon }) => ({

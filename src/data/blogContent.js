@@ -1,7 +1,8 @@
 // GoldenHeart 博客数据：四篇偏历史思考与日常哲思的原创随笔。
 // 文章正文只保留段落文本，排版由文章列表与阅读页统一负责。
 
-const publicAsset = (path) => `${import.meta.env.BASE_URL}${path}`;
+const baseUrl = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const publicAsset = (path) => `${baseUrl}${path.replace(/^\/+/, "")}`;
 
 const fireAfterFireBody = [
   "人类并不是从城市开始改变世界的。更早之前，一簇被反复守住的火，已经把夜晚从危险的时间变成了可以聚集的时间。",

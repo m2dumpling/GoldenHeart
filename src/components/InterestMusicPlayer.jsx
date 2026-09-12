@@ -1,9 +1,10 @@
 import { assetUrl } from "../utils/asset";
 import { CaretLeft, CaretRight, Pause, Play } from "@phosphor-icons/react";
 import { useEffect, useMemo, useRef, useState } from "react";
-const harborLightsAudio = `${import.meta.env.BASE_URL}audio/harbor-lights.mp3`;
-const starGraffitiAudio = `${import.meta.env.BASE_URL}audio/star-graffiti.mp3`;
-const lighthouseAudio = `${import.meta.env.BASE_URL}audio/lighthouse.mp3`;
+const baseUrl = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const harborLightsAudio = `${baseUrl}audio/harbor-lights.mp3`;
+const starGraffitiAudio = `${baseUrl}audio/star-graffiti.mp3`;
+const lighthouseAudio = `${baseUrl}audio/lighthouse.mp3`;
 import harborCoverRaw from "../../docs/Interests/Music/播放器/cover-harbor-lights.jpg";
 import starCoverRaw from "../../docs/Interests/Music/播放器/cover-star-graffiti.jpg";
 import lighthouseCoverRaw from "../../docs/Interests/Music/播放器/cover-lighthouse.jpg";

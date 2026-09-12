@@ -1,5 +1,7 @@
 import { navItems } from "../data/siteContent";
 
+const baseUrl = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+
 function updateScanPosition(event) {
   const { left, top } = event.currentTarget.getBoundingClientRect();
   event.currentTarget.style.setProperty("--scan-x", `${event.clientX - left}px`);
@@ -10,7 +12,7 @@ export default function SiteNav() {
   return (
     <header className="site-nav">
       <a className="brand-mark" href="#home" aria-label="GOLDEN HEART home">
-        <img className="brand-logo" src={`${import.meta.env.BASE_URL}ct-logo.png`} alt="" aria-hidden="true" />
+        <img className="brand-logo" src={`${baseUrl}ct-logo.png`} alt="" aria-hidden="true" />
         <strong>GOLDEN HEART</strong>
       </a>
 

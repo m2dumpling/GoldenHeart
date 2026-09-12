@@ -4,7 +4,8 @@ import {
   Play,
 } from "@phosphor-icons/react";
 import { useEffect, useMemo, useRef, useState } from "react";
-const rainTrack = `${import.meta.env.BASE_URL}audio/rain-on-the-harbor.wav`;
+const baseUrl = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const rainTrack = `${baseUrl}audio/rain-on-the-harbor.wav`;
 
 const frequencyBars = [0.42, 0.74, 0.54, 0.92, 0.66, 0.36, 0.86, 0.58, 0.78, 0.48, 0.68];
 const heartBursts = [

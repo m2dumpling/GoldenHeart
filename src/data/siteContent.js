@@ -26,7 +26,8 @@ import banlattePodcastImageRaw from "../../docs/Interests/Podcast/lighthouse-fm.
 import feihuaPodcastImageRaw from "../../docs/Interests/Podcast/night-wind.png";
 import yilePodcastImageRaw from "../../docs/Interests/Podcast/dumpling-fm.png";
 
-const publicAsset = (path) => `${import.meta.env.BASE_URL}${path}`;
+const baseUrl = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const publicAsset = (path) => `${baseUrl}${path.replace(/^\/+/, "")}`;
 
 export const navItems = [
   { label: "About", href: "#about" },
