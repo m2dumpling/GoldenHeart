@@ -1,50 +1,97 @@
 # GoldenHeart
 
-个人网站。视觉调性源自 [CalmTown](https://github.com/Calmer2024/CalmTown)（深色海报底 + Bebas Neue 大写标题 + 区块编号），用 **Astro + React 岛屿** 重写为「内容与代码分离」的三层架构。
+GoldenHeart 是 dumpling 的个人站，记录正在构建的项目、技术工具、兴趣、设计作品与文字。
 
-## 架构（1:1 复原 CalmTown 视觉）
+站点以“灯塔来信”为核心意象：纸张质感、墨蓝与金色、衬线标题、手写落款和克制的交互，共同组成属于 dumpling 的个人视觉语言。
 
-整站是 CalmTown 的完整 SPA 结构，运行在 Astro 的一个全页 React 岛屿上：
+## 技术栈
 
-```
+- Astro：静态站点框架与页面构建
+- React：交互式页面岛屿
+- Vite：开发与资源打包
+- Phosphor Icons / Simple Icons：图标
+- WAV / MP3：站内氛围音乐与播放器素材
+
+## 页面结构
+
+`src/pages/index.astro` 是唯一页面入口，加载 `BaseLayout` 与全页 React 岛屿 `GoldenApp`。
+
+首页由以下区块组成：
+
+1. Hero：个人介绍、头像、标签与 GitHub 入口
+2. Works：PawBot、ArgoV、LevelUpLife-PWA 项目档案
+3. About：个人信件与签名
+4. Toolkit：技术栈跑马灯
+5. Interests：音乐、播客、游戏、睡眠与旅行
+6. Blog：四篇纯文字思考型随笔
+7. Artworks：AIGC 与音乐设计作品
+8. Footer：访问落款与返回顶部
+
+导航使用 hash 路由：
+
+- `#top`：首页顶部
+- `#works`、`#about`、`#stack`、`#interests`、`#blog`、`#design`：区块定位
+- `#blog/<slug>`：文章阅读页
+
+## 项目目录
+
+```text
 src/
-├── components/CalmtownApp.jsx   ← 主应用（hash 路由 + 全部区块组装）
-├── components/*.jsx             ← CalmTown 全部特效组件（原样）
-├── sections/*.jsx               ← 8 个区块（Hero/FriendSays/Stack/Works/Design/Interests/Blog/Footer）
-├── data/siteContent.js          ← 站点内容：品牌、社交、留言、兴趣、技术栈
-├── data/blogContent.js          ← 博客文章（段落正文 + IMG: 插图约定）
-├── styles/calmtown.css          ← CalmTown 全局样式（3835 行原样）
-└── docs/                        ← 素材库（设计作品/音乐人/播客/项目 logo/音频）
+├── pages/              Astro 页面入口
+├── layouts/            HTML 骨架、字体与站点元信息
+├── golden/             当前 GoldenHeart 页面区块与全局样式
+├── components/         可复用交互组件
+├── data/               站点内容与博客数据
+├── hooks/              React hooks
+└── utils/              资源路径等工具函数
+
+docs/                   设计作品、音乐封面、兴趣图片与项目 logo
+public/                 公开静态资源、文章插图、头像与音频
+scripts/visuals/        SVG 素材源稿、音频生成与视觉资源脚本
 ```
 
-核心约定：**视觉与布局 1:1 来自 CalmTown，改内容只动 src/data/ 两个文件与 docs/ 素材**。
-文章正文中 `IMG:/path/to.png` 段落会渲染为插图。图片素材新增后放 docs/ 对应目录即可被 glob 扫描收录。
+## 内容维护
 
-## 常用命令
+- 修改站点导航、兴趣、技术栈：`src/data/siteContent.js`
+- 修改博客标题、日期、摘要和正文：`src/data/blogContent.js`
+- 修改项目档案：`src/golden/GoldenWorks.jsx`
+- 修改设计作品分组：`src/golden/GoldenArtworks.jsx`
+- 修改整体视觉、响应式和动效：`src/golden/golden.css`
+- 新增公共图片或音频：放入 `public/`，引用时使用 `import.meta.env.BASE_URL`
+- 新增设计素材：放入 `docs/Design/`，由 Artwork 组件按目录自动收集
 
-| 命令             | 说明                                       |
-| :--------------- | :----------------------------------------- |
-| `npm run dev`    | 本地开发服务器（localhost:4321，热更新）   |
-| `npm run build`  | 构建到 `dist/`                             |
-| `npm run preview`| 本地预览构建产物                           |
+## 本地开发
 
-## 如何改内容
+```bash
+npm install
+npx astro dev --background
+npx astro dev status
+npx astro dev logs
+npx astro dev stop
+```
 
-- **发文章**：在 `src/content/blog/` 新建 `.md`，文件名即链接 `/blog/<文件名>`
-- **换站名/社交链接/技术栈**：改 `src/config/site.ts`
-- **换留言**：改 `src/content/friends.yaml`（每条需要唯一 `id`）
-- **加设计作品**：图片丢进 `src/assets/design/`，自动收录（文件名即标题）
-- **再生成视觉**：`scripts/visuals/` 里有 SVG 源稿和 `generate-visuals.sh`（SVG 设计稿 → Edge 无头渲染 PNG）
-- **占位图**：`public/friends/`、`public/covers/` 下的 PNG 全部是生成的占位图，直接替换
+构建与本地预览：
 
-## 部署
+```bash
+npm run build
+npm run preview
+```
 
-默认构建为静态站点。部署到 GitHub Pages 子路径时，在 astro.config.mjs 里加 `base` 配置，
-同时各 data 文件里的图片引用需保持走 `import.meta.env.BASE_URL` 或相对 import。
+## GitHub Pages 部署
 
-## 视觉生成工具
+仓库地址：[github.com/m2dumpling/GoldenHeart](https://github.com/m2dumpling/GoldenHeart)
 
-`scripts/visuals/` 内存有全部 SVG 设计稿与渲染脚本（Edge 无头渲染 SVG → PNG）：
-- `generate-visuals.sh`：头像、朋友留言图、画廊海报、博客封面
-- `generate-blog-visuals.sh`：技术笔记封面、散文插图
-- `generate-dumpling-assets.sh`：音乐人占位图、项目 logo、品牌图标
+项目已配置：
+
+- `astro.config.mjs`：站点地址为 `https://m2dumpling.github.io`，项目子路径为 `/GoldenHeart`
+- `.github/workflows/deploy.yml`：推送到 `main` 后自动构建并部署
+
+首次部署需要在 GitHub 仓库中打开：
+
+`Settings → Pages → Build and deployment → Source → GitHub Actions`
+
+启用后，网站地址为：
+
+<https://m2dumpling.github.io/GoldenHeart/>
+
+之后每次推送到 `main`，GitHub Actions 都会自动重新构建和发布。
