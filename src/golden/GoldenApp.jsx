@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import "./golden.css";
 import GoldenHero from "./GoldenHero";
 import GoldenAbout from "./GoldenAbout";
@@ -122,63 +122,6 @@ function GoldenNav() {
   );
 }
 
-function GoldenCursor() {
-  const dotRef = useRef(null);
-  const ringRef = useRef(null);
-  const [enabled, setEnabled] = useState(false);
-
-  useEffect(() => {
-    const fine = window.matchMedia("(pointer: fine)").matches;
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!fine || reduced) return undefined;
-
-    setEnabled(true);
-    document.documentElement.classList.add("gh-cursor-on");
-    const dot = dotRef.current;
-    const ring = ringRef.current;
-    let x = -100;
-    let y = -100;
-    let rx = -100;
-    let ry = -100;
-    let hovering = false;
-    let raf = 0;
-
-    const onMove = (event) => {
-      x = event.clientX;
-      y = event.clientY;
-      const target = event.target instanceof Element ? event.target.closest("a, button, [data-cursor]") : null;
-      hovering = Boolean(target);
-    };
-
-    const loop = () => {
-      rx += (x - rx) * 0.16;
-      ry += (y - ry) * 0.16;
-      if (dot) dot.style.transform = `translate(${x}px, ${y}px)`;
-      if (ring) {
-        ring.style.transform = `translate(${rx}px, ${ry}px) scale(${hovering ? 1.9 : 1})`;
-        ring.classList.toggle("is-hover", hovering);
-      }
-      raf = window.requestAnimationFrame(loop);
-    };
-
-    window.addEventListener("mousemove", onMove, { passive: true });
-    raf = window.requestAnimationFrame(loop);
-    return () => {
-      window.removeEventListener("mousemove", onMove);
-      window.cancelAnimationFrame(raf);
-      document.documentElement.classList.remove("gh-cursor-on");
-    };
-  }, []);
-
-  if (!enabled) return null;
-  return (
-    <div className="gh-cursor" aria-hidden="true">
-      <span ref={ringRef} className="gh-cursor-ring" />
-      <span ref={dotRef} className="gh-cursor-dot" />
-    </div>
-  );
-}
-
 function FloatingBackToTop({ progress }) {
   const visible = progress > 0.08;
 
@@ -266,9 +209,12 @@ export default function GoldenApp() {
 
   useReveal(route);
 
+  useEffect(() => {
+    document.documentElement.classList.remove("gh-cursor-on");
+  }, []);
+
   return (
     <div className="gh-app" id="top">
-      <GoldenCursor />
       <div className="gh-progress" aria-hidden="true">
         <span style={{ transform: `scaleX(${progress})` }} />
       </div>
